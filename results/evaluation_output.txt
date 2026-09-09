@@ -1,0 +1,27 @@
+﻿Using device for evaluation: cuda
+Loading Validation Dataset...
+MimicDataset: loaded 498 images from c:\Users\ganne\OneDrive\Documents\DL\training\mimic_cxr_aug_validate.csv
+Loading Model Architecture...
+Loading Weights from c:\Users\ganne\OneDrive\Documents\DL\final_model\final_consolidated_model.pth...
+Consolidated Model loaded successfully!
+============================================================
+ CONSISTENCY AND PERFORMANCE EVALUATION
+============================================================
+Consolidated Model Accuracy (Exact Match): 0.00%
+Overall Micro F1-Score: 0.7528
+Pathology | Class Acc | AUC-ROC
+------------------------------------------------------------
+Atelectasis | 56.4% | 0.499
+Cardiomegaly | 62.4% | 0.474
+Consolidation | 68.3% | 0.447
+Edema | 66.7% | 0.509
+Enlarged Cardiomediastinum | 96.8% | 0.582
+Fracture | 53.6% | 0.505
+Lung Lesion | 86.7% | 0.487
+Lung Opacity | 32.5% | 0.471
+No Finding | 93.0% | 0.500
+Pleural Effusion | 95.6% | 0.566
+Pleural Other | 84.3% | 0.432
+Pneumonia | 60.8% | 0.527
+Pneumothorax | 92.8% | 0.522
+Support Devices | 64.5% | 0.554

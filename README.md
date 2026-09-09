@@ -1,6 +1,6 @@
 # A Dual-Task Deep Learning Framework for Multi-Label Thoracic Pathology Classification and Spatial Localization in Chest Radiographs with Grad-CAM Explainability
 
-LaTeX source, figures, and the project's training and evaluation code.
+Paper, training and evaluation code, and results.
 
 **Authors** — Allan Suraj, Anish Ganesh, Arpan Murthy, Kshitij Narendrakumar
 Nagashetti, Rashmi N Ugarakhod
@@ -29,8 +29,7 @@ fig/                 figures used by the paper
 references.bib       bibliography
 src/                 training and evaluation code
 results/             evaluation output as produced by the scripts
-scripts/             figure generation and analysis
-docs/                submission notes, roadmap, similarity analysis
+scripts/             figure generation
 ```
 
 ## Code
@@ -61,7 +60,7 @@ make anon     # builds paper_anon.pdf
 make clean
 ```
 
-Both variants must come out at exactly 6 pages, the venue limit.
+Both variants come out at exactly 6 pages, the venue limit.
 
 ## Data
 
@@ -72,28 +71,37 @@ sharing the images or the derived label files:
 - MIMIC-CXR   https://physionet.org/content/mimic-cxr/
 - VinDr-CXR   https://physionet.org/content/vindr-cxr/
 
-mimic_dataset.py expects a labels CSV and an image root; point them at your own
-credentialed copy. Trained checkpoints are likewise not included, and .pth,
-.csv and .dcm are gitignored so they cannot be committed by accident.
+`src/classification/mimic_dataset.py` expects a labels CSV and an image root;
+point them at your own credentialed copy. `src/detection/csv_to_coco.py`
+converts the VinDr per-reader CSV annotations into COCO-style JSON with boxes as
+[xmin, ymin, w, h] and a reserved background index.
+
+Trained checkpoints are not included. `.pth`, `.csv` and `.dcm` are gitignored so
+data and weights cannot be committed by accident.
+
+## Results
+
+`results/evaluation_results.txt` is the output of `src/ensemble/evaluate_final.py`
+over the 498-image patient-disjoint validation subset.
+`results/inference_result.txt` is a single-image inference trace.
 
 ## Open discrepancies
 
 Three things to check before relying on the numbers in the paper.
 
-**1. Per-class AUC.** results/evaluation_results.txt, produced by
-src/ensemble/evaluate_final.py over the 498-image validation subset, reports
-per-class AUC-ROC between 0.432 and 0.582, mean about 0.505, over the CheXpert
-14 vocabulary. The paper reports a mean of 0.759 with peaks at 0.87, over a
-different 14-class vocabulary. The micro F1 (0.7528) and exact match (0.00%) do
-agree between the two. The source of the AUC figures in the paper has not been
-located in this repository.
+**1. Per-class AUC.** `results/evaluation_results.txt` reports per-class AUC-ROC
+between 0.432 and 0.582, mean about 0.505, over the CheXpert 14 vocabulary. The
+paper reports a mean of 0.759 with peaks at 0.87, over a different 14-class
+vocabulary. The micro F1 (0.7528) and exact match (0.00%) do agree between the
+two. The source of the AUC figures in the paper has not been located in this
+repository.
 
-**2. scripts/generate_figures.py does not plot measured results.** Its ROC
+**2. `scripts/generate_figures.py` does not plot measured results.** Its ROC
 routine seeds a random generator and draws curves to hard-coded AUC targets
-(aucs = [0.89, 0.86, 0.87, 0.78, 0.81, 0.85]), and its class-distribution
+(`aucs = [0.89, 0.86, 0.87, 0.78, 0.81, 0.85]`), and its class-distribution
 routine uses hard-coded counts described in the source as "representative"
-rather than counted from the corpus. Its output is illustrative, not
-evidential, and must not be presented as a result.
+rather than counted from the corpus. Its output is illustrative, not evidential,
+and must not be presented as a result.
 
 **3. Confusion matrix.** The diagonal of Fig. 3 sums to 130 while the text and
 Table II report top-1 agreement as 129/487 (26.5%).

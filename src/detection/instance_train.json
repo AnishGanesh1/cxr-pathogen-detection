@@ -1,0 +1,52 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "file_name": "p10/p10000032/s50000001/dicom_0001.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": 2,
+      "file_name": "p10/p10000032/s50000002/dicom_0002.png",
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 0,
+      "bbox": [120.0, 220.0, 180.0, 140.0],
+      "area": 25200.0,
+      "iscrowd": 0
+    },
+    {
+      "id": 2,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [400.0, 300.0, 90.0, 110.0],
+      "area": 9900.0,
+      "iscrowd": 0
+    },
+    {
+      "id": 3,
+      "image_id": 2,
+      "category_id": 0,
+      "bbox": [200.0, 250.0, 160.0, 130.0],
+      "area": 20800.0,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 0,
+      "name": "cardiomegaly"
+    },
+    {
+      "id": 1,
+      "name": "pleural_effusion"
+    }
+  ]
+}

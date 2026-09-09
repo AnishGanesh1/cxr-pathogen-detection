@@ -1,0 +1,33 @@
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# Python
+__pycache__/
+*.pyc
+
+# Scratch
+*.tmp
+scratch/
+sources/
+
+# Data and weights: credentialed-access, not redistributable
+*.pth
+*.pt
+*.ckpt
+*.csv
+*.dcm
+data/
+checkpoints*/
